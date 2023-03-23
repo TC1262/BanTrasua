@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        @* Menu ---------------------------------------------------------------------------------------- *@
+        <div class="row border bg-light">
+            <div class="col-md-5"></div>
+            <div class="col-md-7">
+                <ul class="nav navbar">
+                    <li class="nav-item"><a class="nav-link" href="/Bill/TrangChu">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Bill/SanPham">Quản lý Sản phẩm</a></li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" href="#">Quản lý đơn hàng</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Đơn hàng chưa giao</a>
+                                <a class="dropdown-item" href="#">Đơn hàng giao hiện tại</a>
+                                <a class="dropdown-item" href="#">Đơn hàng đã giao</a>
+                                <a class="dropdown-item" href="/Bill/Home">Tất cả đơn hàng</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/Bill/KhachHang">Khách hàng</a></li>
+                </ul>
+            </div>
+        </div>
+
+        @* Content ------------------------------------------------------------------------------------- *@
+        <div class="row mt-2">
+            <div class="col text-center">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@using WebsiteBanTraSua.Models;
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/QuanLy.cshtml";
+}
+
+@model List<PRODUCT>
+
+<div class="container-fluid">
+    @* Tiêu đề ----------------------------------------------------------------------------------------- *@
+    <div class="row">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Thông tin sản phẩm</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row mt-2 mb-2">
+        <div class="col-md-12 text-center">
+            <form action="/Bill/GiaoHang" method="post">
+                <table class="table">
+                    <tr>
+                        <th class="w-10">Mã SP</th>
+                        <th class="w-10">Tên SP</th>
+                        <th class="w-10">Mã loại</th>
+                        <th class="w-10">Giá bán</th>
+                        <th class="w-40">Giới thiệu</th>
+                        <th class="w-40">Hình ảnh minh họa</th>
+                        <th class="w-40">Số lượng tồn</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.maSP</td>
+                            <td>@item.tenSP</td>
+                            <td>@item.maLoai</td>
+                            <td>@String.Format("{0:#,##}", item.gia) VNĐ</td>
+                            <td>@item.gioiThieu</td>
+                            <td><img src="~/Content/img/@item.hinhAnh" class="w-75" /></td>
+                            <td>@item.soLuongTon</td>
+                            <td><a href="#">Chi tiết</a></td>
+                            <td><a href="#">Xóa</a></td>
+                            <td><a href="#">Sửa</a></td>
+                        </tr>
+                    }
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

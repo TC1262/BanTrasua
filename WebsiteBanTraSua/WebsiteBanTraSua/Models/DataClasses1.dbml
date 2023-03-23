@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLBanTraSua" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-PEPM7OTH;Initial Catalog=QLBanTraSua;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLBanTraSuaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BILL" Member="BILLs">
+    <Type Name="BILL">
+      <Column Name="maHD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="ngayMua" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="tongTien" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ngayHenGiao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngayThanhToan" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngayGiaoHang" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="BILL_BILLDETAIL" Member="BILLDETAILs" ThisKey="maHD" OtherKey="maHD" Type="BILLDETAIL" />
+      <Association Name="CUSTOMER_BILL" Member="CUSTOMER" ThisKey="userName" OtherKey="userName" Type="CUSTOMER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BILLDETAILS" Member="BILLDETAILs">
+    <Type Name="BILLDETAIL">
+      <Column Name="maHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maSP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="soLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BILL_BILLDETAIL" Member="BILL" ThisKey="maHD" OtherKey="maHD" Type="BILL" IsForeignKey="true" />
+      <Association Name="PRODUCT_BILLDETAIL" Member="PRODUCT" ThisKey="maSP" OtherKey="maSP" Type="PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CATEGORY" Member="CATEGORies">
+    <Type Name="CATEGORY">
+      <Column Name="maLoai" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenLoai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="CATEGORY_PRODUCT" Member="PRODUCTs" ThisKey="maLoai" OtherKey="maLoai" Type="PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONTACT" Member="CONTACTs">
+    <Type Name="CONTACT">
+      <Column Name="userName" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mess" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="CUSTOMER_CONTACT" Member="CUSTOMER" ThisKey="userName" OtherKey="userName" Type="CUSTOMER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CUSTOMER" Member="CUSTOMERs">
+    <Type Name="CUSTOMER">
+      <Column Name="userName" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pass" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="hoTen" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="soDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="diaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="Char(90)" CanBeNull="true" />
+      <Association Name="CUSTOMER_BILL" Member="BILLs" ThisKey="userName" OtherKey="userName" Type="BILL" />
+      <Association Name="CUSTOMER_CONTACT" Member="CONTACT" ThisKey="userName" OtherKey="userName" Type="CONTACT" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCTS" Member="PRODUCTs">
+    <Type Name="PRODUCT">
+      <Column Name="maSP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenSP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="maLoai" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="gia" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="gioiThieu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="soLuongTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PRODUCT_BILLDETAIL" Member="BILLDETAILs" ThisKey="maSP" OtherKey="maSP" Type="BILLDETAIL" />
+      <Association Name="CATEGORY_PRODUCT" Member="CATEGORY" ThisKey="maLoai" OtherKey="maLoai" Type="CATEGORY" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,74 @@
+﻿@using WebsiteBanTraSua.Models;
+@{
+    ViewBag.Title = "HTGioHang";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@model GioHang
+
+<div class="container-fluid">
+    @* Tiêu đề ----------------------------------------------------------------------------------------- *@
+    <div class="row mb-5">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Giỏ hàng</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model == null || Model.SoMatHang() == 0)
+            {
+                <div class="row mb-5 mt-5">
+                    <div class="col-md-12 text-center mb-2">
+                        <h3 class="p-2" style="color:red">Giỏ hàng rỗng!!!</h3>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <table class="table text-center">
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên</th>
+                        <th>Ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    @foreach (CartItem item in Model.lst)
+                    {
+                        <tr>
+                            <td>@item.iMaSP</td>
+                            <td>@item.sTenSP</td>
+                            <td><img src="~/Content/img/@item.sAnhBia" class="w-25" /></td>
+                            <td>@item.iSoLuong</td>
+                            <td>@String.Format("{0:#,##}", item.dDonGia) VNĐ</td>
+                            <td>@String.Format("{0:#,##}", item.ThanhTien) VNĐ</td>
+                            <td><a href="#">Chi tiết</a></td>
+                            <td><a href="#">Xóa</a></td>
+                            <td><a href="#">Sửa</a></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="3" align="center">Tổng</td>
+                        <td class="text-danger" style="font-weight:bold">@Model.TongSLHang()</td>
+                        <td></td>
+                        <td class="text-danger text-bold" style="font-weight:bold">
+                            @String.Format("{0:#,##}", Model.TongThanhTien()) VNĐ
+                        </td>
+                        <td colspan="3" align="center">
+                            @*<a href="/Admin/XacNhanThongTin" class="btn btn-danger">Đặt hàng</a>*@
+
+                            @Html.ActionLink("Đặt hàng", "XacNhanThongTin", "Admin",
+                            new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>     
+    </div>
+</div>

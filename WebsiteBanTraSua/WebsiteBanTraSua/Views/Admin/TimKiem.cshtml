@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    @* Tiêu đề ------------------------------------------------------------------------------------------ *@
+    <div class="row">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Tìm kiếm</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row mb-5 mt-5">
+        <div class="col-md-3 mt-5 mb-5"></div>
+        <div class="col-md-6 text-center justify-content-md-center">
+            <form action="/Admin/XuLyTimKiem" method="post" class="text-center">
+                <div class="container">
+                    <table cellspacing="2" width="500" cellpadding="7">
+                        <tr>
+                            <td>Tên sản phẩm cần tìm:</td>
+                            <td><input type="text" name="txtTuKhoa" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>Loại:</td>
+                            <td class="dropdown mt-3">@Html.DropDownList("maLoai")</td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Search" class="btn btn-info justify-content-md-center mt-4" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3 mb-5 mt-5"></div>
+    </div>
+</div>

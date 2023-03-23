@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+@using WebsiteBanTraSua.Models;
+
+<body>
+    <div class="container-fluid">
+        @* Header ====================================================================================== *@
+        <div class="row" style="background-color:#F5F5F5">
+            @* Logo _________________________________________________________________ *@
+            <div class="col-md-3 p-2">
+                <a href="/Admin/Home">
+                    <img src="~/Content/img/logo_tra_sua.jpg" class="w-25 img-logo" />
+                </a>
+            </div>
+
+            @* Login / Registration button __________________________________________ *@
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-3 mt-4">
+                        <a href="/Admin/DangNhap" class="btn bg-secondary mr-1 text-white">
+                            Login
+                        </a>
+                        <a href="/Admin/DangKy" class="btn bg-secondary mr-1 text-white">
+                            Registration
+                        </a>
+                    </div>
+
+                    @* User name ____________________________________________________________ *@
+                    <div class="col-md-2 mt-4 text-center">
+                        @{
+                        if (Session["KhachHang"] != null)
+                        {
+                            var k = Session["KhachHang"] as CUSTOMER;
+                            <span class="text-secondary mr-2" style="font-weight:bold">
+                                Chào bạn, @k.userName
+                            </span>
+                            <a href="/Admin/DangXuat">
+                                <img src="~/Content/img/logout.png" width="20" height="20" />
+                            </a>
+                        }
+                    }
+                    </div>
+
+                    @* Menubar ______________________________________________________________ *@
+                    <div class="col-md-5 mt-4">
+                        <ul class="nav">
+                            <li class="nav-item p-2">@Html.ActionLink("Home", "Home")</li>
+                            <li class="nav-item p-2">@Html.ActionLink("Products", "Products")</li>
+                            <li class="nav-item p-2">@Html.ActionLink("Find", "TimKiem")</li>
+                            <li class="nav-item p-2">@Html.ActionLink("Cart", "HTGioHang")</li>
+                            <li class="nav-item p-2">@Html.ActionLink("Contact Us", "Contact")</li>
+                        </ul>
+                    </div>
+
+                    @* Cart _________________________________________________________________ *@
+                    <div class="col-md-2 mt-4 text-center">
+                        <a href="/Admin/HTGioHang">
+                            <img src="~/Content/img/cart.png" width="25" height="25" />
+                        </a>
+                        (@{
+                            GioHang g = Session["gio"] as GioHang;
+                            if (g != null)
+                            {
+                                <span class="text-secondary pt-1">@g.SoMatHang()</span>
+                            }
+                            else
+                            {
+                                <span class="text-secondary pt-1">0</span>
+                            }
+                        })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Content ================================================================================ *@
+        <div class="row mt-2 mb-2">
+            @RenderBody()
+        </div>
+    </div>
+
+    @* Footer ====================================================================================== *@
+    <div class="container-fluid" style="background-color:#000000">
+        <div class="row p-3 pt-2 pb-2">
+            @* Logo _________________________________________________ *@
+            <div class="col-md-2">
+                <a href="/Admin/Home">
+                    <img src="~/Content/img/logo_tra_sua.jpg" class="w-50" style="border-radius: 10px" />
+                </a>
+            </div>
+
+            @* Slogan _______________________________________________ *@
+            <div class="col-md-8 text-center text-white">
+                <text style="font-size: 15px; color:#EEEEEE">
+                    Mục đích của chúng tôi là mang đến cho bạn sự hài lòng, sạch sẽ và ngăn nấp
+                    cho từng sản phẩm.
+                </text><br />
+                <i style="font-size:13px; color:#EEEEEE">
+                    Our purpose is to bring you satisfaction,
+                    cleanliness and clutter for each product.
+                </i><br /><br />
+                <i class="fa fa-copyright mr-1" style="color:#EEEEEE"></i>
+                <i style="font-size: 14px; color:#EEEEEE">Copyright: PGD Company</i>
+            </div>
+
+            @* Infomation ___________________________________________ *@
+            <div class="col-md-2">
+                <a style="color:#EEEEEE" href="#"><i class="fa fa-youtube-play mr-1" style="color:#EEEEEE"></i>Youtube</a><br />
+                <a style="color:#EEEEEE" href="#"><i class="fa fa-facebook mr-1" style="color:#EEEEEE"></i>Facebook</a><br />
+                <a style="color:#EEEEEE" href="#"><i class="fa fa-instagram mr-1" style="color:#EEEEEE"></i>Instagram</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@using WebsiteBanTraSua.Models;
+
+@model List<CATEGORY>
+<ul class="nav flex-column">
+    @foreach (var item in Model)
+    {
+        <li class="border text-info">
+            @Html.ActionLink(item.tenLoai, "HTSPTheoLoai", "Admin", new { maL = @item.maLoai }, 
+                    new { @class = "nav-link" })
+        </li>
+    }
+</ul>

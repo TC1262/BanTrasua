@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    @* Tiêu đề ----------------------------------------------------------------------------------------- *@
+    <div class="row">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Đăng nhập</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row mb-5 mt-5">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center mb-5 justify-content-md-center">
+            <div class="container">
+                <form class="text-center justify-content-md-center"  action="/Admin/XuLyDangNhap" 
+                      method="post" >
+                    <table cellspacing="0" cellpadding="7" width="500" class="justify-content-md-center">
+                        <tr>
+                            <td>Tên đăng nhập</td>
+                            <td><input type="text" name="txtTenDN" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>Mật khẩu</td>
+                            <td><input type="password" name="txtPassword" class="form-control" /></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Đăng nhập" class="btn btn-info justify-content-md-center" />
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

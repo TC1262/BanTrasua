@@ -1,0 +1,39 @@
+﻿@using WebsiteBanTraSua.Models;
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@* Hiển thị nhiều sản phẩm *@
+@model List<PRODUCT>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Các sản phẩm nổi bật</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="product-group">
+            <div class="row text-center">
+                @foreach (PRODUCT s in Model)
+                {
+                    <div class="col-md-3 text-center">
+                        <img src="~/Content/img/@s.hinhAnh" class="w-50" /> <br />
+                        <h6>@s.tenSP</h6>
+                        Giá: <text style="font-weight: bold" class="text-danger">@s.gia</text><br />
+                        @*Liên kết chọn và chi tiết*@
+                        <div class="row text-center">
+                            <div class="col-md-12 text-center mt-2">
+                                <a href="/Admin/ChiTietSP/@s.maSP" class="btn btn-info">Chi tiết</a>
+                                <a href="/Admin/ChonMua/@s.maSP" class="btn btn-info">Chọn</a>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

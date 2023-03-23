@@ -1,0 +1,59 @@
+﻿@using WebsiteBanTraSua.Models;
+@{
+    ViewBag.Title = "ChiTietSP";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+    var lst = ViewBag.dsSCCD as List<PRODUCT>;   /*Lấy danh sách có cùng loại*/
+}
+
+@* Hiển thị 1 cuốn sách *@
+@model PRODUCT
+
+<div class="container-fluid">
+    @* Tiêu đề ----------------------------------------------------------------------------------------- *@
+    <div class="row">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Chi tiết sản phẩm</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row">
+        @* Banner -------------------------------------------------------------------------------------- *@
+        <div class="col-md-4">
+            <img class="w-75" src="~/Content/img/@Model.hinhAnh" />
+        </div>
+
+        @* Danh sách các quyển sách -------------------------------------------------------------------- *@
+        <div class="col-md-8">
+            <h5>@Model.tenSP</h5>
+            <p>@Model.gioiThieu</p>
+            <p>Giá bán: <text style="color:red; font-weight:bold">@Model.gia</text></p>
+            <button class="btn bg-info text-white mt-2">Đặt mua</button>
+        </div>
+    </div>
+
+    @* Sản phẩm có cùng loại ----------------------------------------------------------------------- *@
+    @* Tiêu đề ---------------------------------------------------------------- *@
+    <div class="row mt-5">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Các sản phẩm cùng loại</h4>
+        </div>
+
+        @* Nội dung --------------------------------------------------------------- *@
+        <div class="row">
+            <div class="product-group">
+                <div class="row text-center">
+                    @foreach (var i in lst)
+                    {
+                        <div class="col-md-3 text-center mb-2">
+                            <img class="w-75 mt-2 mb-1" src="~/Content/img/@i.hinhAnh" />
+                            <h6 style="font-size:15px;" class="card-title">@i.tenSP</h6>
+                            <a href="/Admin/ChiTietSP/@i.maSP" class="btn btn-info">Chi tiết</a>
+                            <hr style="color:#8e8e8e" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model WebsiteBanTraSua.Models.CONTACT
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    @* Tiêu đề ----------------------------------------------------------------------------------------- *@
+    <div class="row mb-5">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Liên hệ</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row mt-2 mb-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center justify-content-md-center">
+            <div class="container">
+                @using (Html.BeginForm("XLLienHe", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="justify-content-md-center">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="text-center mb-2 row">
+                            @* Tiêu đề --------------------------- *@
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.mess, htmlAttributes:
+                                new { @class = "control-label col-md-2" })
+                            </div>
+                            
+                            @* Input ----------------------------- *@
+                            <div class="col-md-10 text-center">
+                                @Html.EditorFor(model => model.mess, new { htmlAttributes = 
+                                    new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.mess, "", 
+                                    new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-inline mb-5">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" value="Gửi" class="btn btn-info" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    @* Back to home ------------------------------------------------------------------------------------ *@
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            @Html.ActionLink("Back to Home", "Home")
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@using WebsiteBanTraSua.Models;
+@{
+    ViewBag.Title = "KhachHang";
+    Layout = "~/Views/QuanLy.cshtml";
+}
+
+@model List<CUSTOMER>
+
+<div class="container-fluid">
+    @* Tiêu đề ----------------------------------------------------------------------------------------- *@
+    <div class="row">
+        <div class="col-md-12 text-center mb-2">
+            <h4 class="p-2" style="background-color: #F8F8FF; color:blue">Thông tin khách hàng</h4>
+        </div>
+    </div>
+
+    @* Nội dung ---------------------------------------------------------------------------------------- *@
+    <div class="row mt-2 mb-2">
+        <div class="col-md-12 text-center">
+            <form action="#" method="post">
+                <table class="table">
+                    <tr>
+                        <th class="w-10">User name</th>
+                        <th class="w-10">Password</th>
+                        <th class="w-10">Họ tên</th>
+                        <th class="w-10">Số điện thoại</th>
+                        <th class="w-40">Địa chỉ</th>
+                        <th class="w-40">Email</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.userName</td>
+                            <td>@item.pass</td>
+                            <td>@item.hoTen</td>
+                            <td>@item.soDT</td>
+                            <td>@item.diaChi</td>
+                            <td>@item.email</td>
+                        </tr>
+                    }
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
